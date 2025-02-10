@@ -1,0 +1,24 @@
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center mt-5">
+  <div>
+    <h3>Loading...</h3>
+  </div>
+</div>
+
+<div *ngIf="!isLoading" class="d-flex justify-content-center">
+  <table class="table table-striped text-center table-bordered mt-5" style="width: 50%;">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Region</th>
+        <th>Sales Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let person of Peoples">
+        <td>{{ person.Person }}</td>
+        <td>{{ person.Region }}</td>
+        <td>{{ person.Sales }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

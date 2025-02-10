@@ -1,0 +1,45 @@
+<div *ngIf="isLoading" class="d-flex justify-content-center align-items-center mt-5">
+    <div>
+        <h3>Loading...</h3>
+    </div>
+</div>
+<div *ngIf="!isLoading">
+    <div>
+        <input type="text" class="form-control" placeholder="Search here...." [(ngModel)]="searchText" (input)="onSearch()">
+    </div>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th *ngFor="let header of headers">{{header}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let order of OrdersData | paginate :{ itemsPerPage: itemsPerPage, currentPage: p }">
+                <td>{{order.Order_ID}}</td>
+                <td>{{order.Order_Date}}</td>
+                <td>{{order.Ship_Date}}</td>
+                <td>{{order.Ship_Mode}}</td>
+                <td>{{order.Customer_Name}}</td>
+                <td>{{order.Segment}}</td>
+                <td>{{order.Address}}</td>
+                <td>{{order.Region}}</td>
+                <td>{{order.Category}}</td>
+                <td>{{order.Sub_Category}}</td>
+                <td>{{order.Product_Name}}</td>
+                <td>{{order.Sales}}</td>
+                <td>{{order.Quantity}}</td>
+                <td>{{order.Discount}}</td>
+                <td>{{order.Profit}}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="d-flex justify-content-between align-items-center">
+        <div>
+            <label for="itemsPerPage">Items Per page :&nbsp;</label>
+            <select id="itemsPerPage" [(ngModel)]="itemsPerPage">
+                <option *ngFor="let item of [5,10,20,50,100]" [value]="item">{{item}}</option>
+            </select>
+        </div>
+        <pagination-controls (pageChange)="p=$event"></pagination-controls>
+    </div>
+</div>
